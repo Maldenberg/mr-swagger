@@ -6,61 +6,6 @@ info:
   description: |
     Справочник внешних методов API MR Group SuperApp.
 
-    ## История изменений
-
-    ### 0.8.0
-
-    #### Изменено
-
-    - В ответ метода `GET /banners` добавлены поля `code` и `logo`.
-    - В представление проекта, возвращаемое методами `/sale` добавлено поле `logo`.
-
-    #### Добавлено
-
-    - Добавлен метод `POST /purchases:refresh`.
-
-    ### 0.7.0
-
-    - Добавлен метод `GET /realty/objects/{code}/presentation`.
-    - Добавлен метод `GET /yandex/realty/feeds/sale-new`
-
-    ### 0.6.2
-
-    - В ответ метода `GET /purchase/{purchase-id}` в объект phase_document добавлен параметр debt_amount
-
-    ### 0.6.1
-
-    - Добавлен метод `GET /private/banners`.
-    - Добавлен метод `GET /private/{project-code}/banners`.
-
-    ### 0.5.8
-
-    - Добавлена возможность передачи сведений об источнике обращения в методы:
-      '/app/device'
-      '/brokers/partnership/requests'
-      '/user/consultation'
-      '/user/booking/product/{code}'
-    - Добавлен метод `POST /referral/participation/requests` для отправки потенциальными клиентами
-      заявок на участие в реферальной программе.
-    - Добавлен метод `GET /commerсials/banners` для получения данных баннеров торговой недвижимости
-    - В метод `GET /promo` добавлен входной параметр tags
-    - В ответ методов `GET /sale/projects` и `GET /sale/projects/{code}` добавлен параметр business_unit
-    - В ответ метода `GET /sale/projects/{code}` добавлен объект related_project с информацией о связанном проекте
-    - В методы `GET /sale/products/filters`, `GET /sale/product` и `GET /sale/product/{code}` добавлен параметр ventilation в качестве входного и в ответы методов
-
-    ### 0.5.6
-
-    #### Добавлено
-
-    - В метод `GET /decoration/kitchen/options` добавлены параметры:
-    kitchen_partner, additional_images, slider_position, а также ID типа планировки и варианта кухни
-
-    ### 0.5.5
-
-    #### Добавлено
-
-    - Добавлен метод `POST /brokers/partnership/requests` для отправки потенциальными брокерами
-      заявок на партнёрство.
 
 
 servers:
