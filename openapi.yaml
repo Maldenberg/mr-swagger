@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: MR Banners API
+  title: MR Demo API
   version: "1.0.0"
 servers:
   - url: https://example.local
@@ -8,9 +8,7 @@ paths:
   /banners:
     get:
       summary: Get banners (demo)
-      description: >
-        Демонстрационная операция для Microcks.
-        Через query-параметр `mode` можно переключать сценарий: ok | error.
+      description: Demo endpoint for Microcks mocking
       parameters:
         - in: query
           name: mode
@@ -18,42 +16,55 @@ paths:
           schema:
             type: string
             enum: [ok, error]
-          description: Если `error` — вернём 500.
+          description: Optional switch for dispatcher rules
       responses:
         "200":
           description: OK
-          headers:
-            X-Trace-Id:
-              schema:
-                type: string
-              description: Трассировочный ID, может приходить из запроса
           content:
             application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        imageUrl:
+                          type: string
+                  total:
+                    type: integer
               examples:
                 ok:
-                  summary: Successful banners list
                   value:
-                    data:
-                      - id: "bnr-101"
-                        title: "Spring Sale"
-                        imageUrl: "https://cdn.example/banners/spring.jpg"
-                        locale: "ru_RU"
-                      - id: "bnr-102"
-                        title: "Cashback 5%"
-                        imageUrl: "https://cdn.example/banners/cashback.jpg"
-                        locale: "ru_RU"
-                    meta:
-                      requestId: "{{request.headers.X-Request-Id}}"
-                      ts: "{{ now() }}"
+                    items:
+                      - id: "bnr-1001"
+                        title: "Welcome bonus"
+                        imageUrl: "https://cdn.example/banners/welcome.png"
+                      - id: "bnr-2002"
+                        title: "Cashback weekend"
+                        imageUrl: "https://cdn.example/banners/cashback.png"
+                    total: 2
         "500":
-          description: Simulated error
+          description: Simulated server error
           content:
             application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  code:
+                    type: string
+                  requestId:
+                    type: string
               examples:
                 server-error:
-                  summary: Forced 500 error
                   value:
                     error: "Internal Server Error"
                     code: "SIMULATED_500"
-                    details: "Forced by Microcks"
                     requestId: "{{request.headers.X-Request-Id}}"
